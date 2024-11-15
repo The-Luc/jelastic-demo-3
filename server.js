@@ -16,12 +16,12 @@ const pool = new Pool({
 
 app.use(express.json());
 
-app.get("/items", async (req, res) => {
+app.get("/cars", async (req, res) => {
   const result = await pool.query("SELECT * FROM items");
   res.json(result.rows);
 });
 
-app.post("/items", async (req, res) => {
+app.post("/cars", async (req, res) => {
   console.log(req.body);
   const { name } = req.body;
   const result = await pool.query(
@@ -31,7 +31,7 @@ app.post("/items", async (req, res) => {
   res.json(result.rows[0]);
 });
 
-app.put("/items/:id", async (req, res) => {
+app.put("/cars/:id", async (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
   const result = await pool.query(
@@ -41,7 +41,7 @@ app.put("/items/:id", async (req, res) => {
   res.json(result.rows[0]);
 });
 
-app.delete("/items/:id", async (req, res) => {
+app.delete("/cars/:id", async (req, res) => {
   const { id } = req.params;
   await pool.query("DELETE FROM items WHERE id = $1", [id]);
   res.sendStatus(204);
@@ -49,5 +49,5 @@ app.delete("/items/:id", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
-  console.log("Check me 2");
+  console.log("Server cars is running on port 3000");
 });
